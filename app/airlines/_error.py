@@ -1,26 +1,9 @@
 from flask import jsonify
-from typing import Any, Dict, Optional
+from typing import Any
 
 from flask.app import Flask
 
-
-class ExternalError(Exception):
-    """External-facing error."""
-    def __init__(
-        self,
-        message: str,
-        status_code: int = 500,
-        payload: Optional[Dict] = None,
-    ) -> None:
-        self.message = message
-        self.payload = payload
-        self.status_code = status_code
-
-    def to_dict(self) -> Dict:
-        data = dict(self.payload or ())
-        data["message"] = self.message
-
-        return data
+from app.error import ExternalError
 
 
 class AirlineIDNotFoundError(ExternalError):

@@ -1,13 +1,11 @@
 from flask import Flask
 from flask_restx import Api
 
-from typing import Optional
-
-from app.commands import register_commands
-from app.config import config_by_name
-from app.error import register_errorhandlers
-from app.database import db
-from app.routes import register_routes
+from .commands import register_commands
+from .config import config_by_name
+from .error import register_errorhandlers
+from .database import db
+from .routes import register_routes
 
 
 def create_app(env: str) -> Flask:

@@ -57,6 +57,6 @@ class AirlineIdResource(Resource):
         """Update a single Airline."""
         changes: AirlineInterface = request.parsed_obj
 
-        Airline = AirlineService.get_by_id(airlineId)
+        airline = AirlineService.get_by_id(airlineId)
 
-        return AirlineService.update(Airline, changes)
+        return AirlineService.update(airline, changes)

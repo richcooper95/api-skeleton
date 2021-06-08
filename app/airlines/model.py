@@ -6,6 +6,7 @@ from app.database import db
 
 from .interface import AirlineInterface
 
+
 class Airline(db.Model):
     """Class representing an airline."""
 

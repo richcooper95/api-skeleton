@@ -1,0 +1,47 @@
+#!/bin/bash
+
+#
+# Create virtualenv and install dependencies
+#
+function venv {
+    rm -rf venv
+    python3 -m venv venv
+    venv/bin/pip install -r requirements.txt
+}
+
+#
+# Auto-format the codebase
+#
+function pyformat {
+    FILES="$(find app -name "*.py")"
+    for FILE in $FILES; do
+        venv/bin/black "$FILE"
+    done
+}
+
+#
+# Lint the python codebase
+#
+function lint {
+    venv/bin/pylint app
+}
+
+#
+# Typecheck the codebase
+#
+function typecheck {
+    venv/bin/mypy app
+}
+
+
+#
+# List available tasks
+#
+function help {
+    echo "$0 <task> <args>"
+    echo "Tasks:"
+    compgen -A function | cat -n
+}
+
+TIMEFORMAT="Task completed in %3lR"
+time "${@:-help}"

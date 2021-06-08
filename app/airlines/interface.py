@@ -2,6 +2,7 @@
 
 from mypy_extensions import TypedDict
 
+
 class AirlineInterface(TypedDict, total=False):
     airline_id: int
     name: str
