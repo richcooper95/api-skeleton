@@ -1,4 +1,4 @@
-"""Orchestrates routes, services and schemas for airline entities."""
+"""Orchestrates routes, services and schemas for Airline entities."""
 
 from flask import jsonify, request
 from flask_accepts import accepts, responds
@@ -7,10 +7,10 @@ from flask.wrappers import Response
 
 from typing import List
 
+from .interface import AirlineInterface
+from .model import Airline
 from .schema import AirlineSchema
 from .service import AirlineService
-from .model import Airline
-from .interface import AirlineInterface
 
 
 api = Namespace("Airline", description="An operating airline.")

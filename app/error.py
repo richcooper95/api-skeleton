@@ -25,6 +25,11 @@ class ExternalError(Exception):
 
 
 def register_errorhandlers(app: Flask) -> None:
+    """Register errorhandlers on a given {Flask} app instance.
+
+    Arguments:
+        app -- The {Flask} app instance to register errorhandlers on.
+    """
     @app.errorhandler(ExternalError)
     def handle_external_error(error: ExternalError) -> Dict:
         """Generic external error handling."""

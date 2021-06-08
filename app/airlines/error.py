@@ -1,6 +1,3 @@
-from flask import jsonify
-from typing import Any
-
 from flask.app import Flask
 
 from app.error import ExternalError
@@ -17,5 +14,10 @@ class AirlineIDNotFoundError(ExternalError):
 
 
 def register_errorhandlers(app: Flask) -> None:
-    """Register any Airline-specific error handling here."""
+    """Register any Airline-specific error handling.
+
+    Arguments:
+        app -- The {Flask} app instance to register error handlers on.
+    """
+    # None currently required.
     pass

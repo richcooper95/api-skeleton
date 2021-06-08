@@ -5,6 +5,11 @@ from .database import db
 
 
 def register_commands(app: Flask) -> None:
+    """Register a set of `flask ...` commands to support.
+
+    Arguments:
+        app -- The {Flask} app instance to register commands on.
+    """
     @app.cli.command("reset-db")
     def reset_db() -> None:
         print("Dropping tables...")

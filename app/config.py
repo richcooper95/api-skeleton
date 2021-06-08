@@ -1,6 +1,6 @@
 import os
 
-from typing import List, Type
+from typing import Type
 
 
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -35,10 +35,25 @@ class ProductionConfig(BaseConfig):
     SQLALCHEMY_DATABASE_URI = f"sqlite:///{basedir}/app-prod.db"
 
 
-EXPORT_CONFIGS: List[Type[BaseConfig]] = [
-    DevelopmentConfig,
-    TestingConfig,
-    ProductionConfig,
-]
+def get_config(cfg_name: str) -> Type[BaseConfig]:
+    """Get the config class corresponding to the given name.
 
-config_by_name = {cfg.CONFIG_NAME: cfg for cfg in EXPORT_CONFIGS}
+    Arguments:
+        cfg_name -- The config name.
+
+    Returns:
+        Type[BaseConfig] -- The config class.
+
+    Raises:
+        ValueError -- Unknown config name supplied.
+    """
+    if cfg_name == DevelopmentConfig.CONFIG_NAME:
+        return DevelopmentConfig
+
+    if cfg_name == TestingConfig.CONFIG_NAME:
+        return TestingConfig
+
+    if cfg_name == ProductionConfig.CONFIG_NAME:
+        return ProductionConfig
+
+    raise ValueError(f"Unknown config name: {cfg_name}")
