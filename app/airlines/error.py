@@ -12,13 +12,10 @@ class AirlineIDNotFoundError(ExternalError):
         super().__init__(
             f"Airline ID {airline_id} could not be found",
             404,
+            payload={"airlineId": airline_id},
         )
 
 
 def register_errorhandlers(app: Flask) -> None:
-    @app.errorhandler(ExternalError)
-    def handle_external_error(error: ExternalError) -> Any:
-        response = jsonify(error.to_dict())
-        response.status_code = error.status_code
-
-        return response
+    """Register any Airline-specific error handling here."""
+    pass

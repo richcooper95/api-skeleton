@@ -4,7 +4,7 @@ from typing import List, Optional
 
 from app.database import db
 
-from ._error import AirlineIDNotFoundError
+from .error import AirlineIDNotFoundError
 from .interface import AirlineInterface
 from .model import Airline
 

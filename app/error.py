@@ -1,4 +1,4 @@
-from flask.app import Flask
+from flask import Flask, jsonify
 
 from typing import Dict, Optional
 
@@ -25,4 +25,12 @@ class ExternalError(Exception):
 
 
 def register_errorhandlers(app: Flask) -> None:
+    @app.errorhandler(ExternalError)
+    def handle_external_error(error: ExternalError) -> Dict:
+        """Generic external error handling."""
+        response = jsonify(error.to_dict())
+        response.status_code = error.status_code
+
+        return response
+
     airlines.register_errorhandlers(app)
