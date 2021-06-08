@@ -1,7 +1,7 @@
 from flask import Flask
 
 from .airlines.model import Airline
-from .resources import db
+from .database import db
 
 
 def register_commands(app: Flask) -> None:

@@ -2,7 +2,7 @@
 
 from sqlalchemy import Integer, Column, String
 
-from app.resources import db
+from app.database import db
 
 from .interface import AirlineInterface
 

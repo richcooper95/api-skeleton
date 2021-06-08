@@ -6,7 +6,7 @@ from typing import Optional
 from app.commands import register_commands
 from app.config import config_by_name
 from app.error import register_errorhandlers
-from app.resources import db
+from app.database import db
 from app.routes import register_routes
 
 
