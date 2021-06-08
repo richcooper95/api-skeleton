@@ -2,10 +2,22 @@
 
 from sqlalchemy import Integer, Column, String
 
-from app import db
+from app.resources import db
+
+from .interface import AirlineInterface
 
 class Airline(db.Model):
     """Class representing an airline."""
-    airline_id: Column(Integer(), primary_key=True)
-    name: Column(String(length=255))
-    country: Column(String(length=255))
+
+    __tablename__ = "airline"
+
+    airline_id = Column(Integer(), primary_key=True)
+    name = Column(String(255))
+    country = Column(String(255))
+
+
+    def update(self, changes: AirlineInterface):
+        for key, val in changes.items():
+            setattr(self, key, val)
+
+        return self
